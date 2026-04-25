@@ -1,0 +1,250 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage{subcaption}
+
+\geometry{margin=1in}
+
+\title{\textbf{Amazon Sales & Customer Insights Analysis}\
+Exploratory Data Analysis Report}
+
+\author{
+Mahek \\ Vijayalaxmi \\ Ritesh \\ Jayamala
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% ================= ABSTRACT =================
+\newpage
+\section*{Abstract}
+This report presents a comprehensive Exploratory Data Analysis (EDA) of an Amazon product dataset with the aim of gaining meaningful insights into product performance and customer behavior. The primary objective of this study is to analyze key factors such as product pricing, customer ratings, discount patterns, and total reviews in order to identify high-value products and understand what drives their success in an e-commerce environment.
+
+The dataset consists of multiple product attributes including product categories, pricing details (original and discounted prices), customer ratings, review counts, best seller status, coupon availability, and sponsorship information. Before performing the analysis, the dataset was carefully preprocessed by handling missing values, removing duplicate entries, and ensuring data consistency. This step was essential to improve the accuracy and reliability of the analysis.
+
+Various data visualization techniques such as histograms, scatter plots, boxplots, bar charts, pie charts, line plots, heatmaps, and KDE plots have been used to explore patterns and relationships within the data. These visualizations help in understanding how different variables interact with each other, such as the relationship between price and ratings, the impact of discounts on customer engagement, and the distribution of products across categories.
+
+Through this analysis, several important insights have been identified. For instance, most products tend to have high ratings, indicating overall positive customer satisfaction. Pricing and discount strategies are found to follow consistent patterns, while customer engagement (measured through reviews) is unevenly distributed, with only a few products receiving significant attention. Additionally, promotional strategies such as coupons and sponsorships are observed to influence visibility but do not directly guarantee higher ratings.
+
+Overall, this report provides a detailed understanding of product trends, customer preferences, and market behavior on the platform. The insights derived from this analysis can be useful for sellers to optimize pricing strategies, improve product quality, and enhance marketing approaches. It also helps customers in making informed purchasing decisions by identifying products that offer the best value for money.
+
+% ================= INTRODUCTION =================
+\newpage
+\section{Introduction}
+E-commerce platforms such as Amazon have revolutionized the way people shop by providing access to a vast variety of products across multiple categories. While this wide availability offers convenience and choice to customers, it also creates a challenge in selecting the best product among numerous similar options. Customers often face difficulty in comparing products based on price, quality, ratings, and reviews, which makes the decision-making process complex and time-consuming.
+
+In this context, data analysis plays a crucial role in simplifying product evaluation and improving decision-making. This project focuses on performing Exploratory Data Analysis (EDA) on an Amazon product dataset to identify patterns, trends, and relationships among different product attributes. The main goal is to determine high-value products that offer a balance between price, quality, and customer satisfaction.
+
+The analysis primarily considers key parameters such as product pricing (original and discounted), customer ratings, and total number of reviews. These factors are important indicators of product performance, as pricing reflects affordability, ratings indicate customer satisfaction, and reviews represent customer engagement and trust. By analyzing these variables, it becomes possible to understand how different factors influence product success on the platform.
+
+In addition to these core parameters, the study also examines other important attributes such as product categories, discount percentages, best seller status, coupon availability, and sponsored listings. These features help in gaining deeper insights into marketing strategies, customer preferences, and competitive dynamics within the e-commerce environment.
+
+Various data visualization techniques are used throughout the analysis, including histograms, scatter plots, boxplots, bar charts, pie charts, heatmaps, and KDE plots. These visualizations make it easier to interpret complex data and uncover hidden patterns that may not be immediately visible in raw data form.
+
+Overall, this project aims to provide a comprehensive understanding of product behavior and customer interaction on an e-commerce platform. The insights obtained from this analysis can help sellers optimize pricing and marketing strategies, while also assisting customers in making informed purchasing decisions by identifying products that deliver the best value for money.
+
+% ================= DATASET =================
+\newpage
+\section{Dataset Description}
+The dataset used in this project contains approximately 2000 product records.
+
+\textbf{Features included:}
+\begin{itemize}
+\item Product Title
+\item Product Rating
+\item Total Reviews
+\item Original Price and Discounted Price
+\item Product Category
+\item Best Seller Status
+\item Coupon Availability
+\end{itemize}
+
+% ================= DATA CLEANING =================
+\newpage
+\section{Data Cleaning and Preprocessing}
+
+\subsection{Missing Values}
+Missing values were identified in several columns of the dataset, including important attributes such as pricing, customer reviews, and product-related details. These missing values can negatively impact analysis results if not handled properly, as they may lead to incorrect interpretations or biased outcomes.
+
+To address this issue, appropriate techniques were applied based on the type of data. For numerical columns, such as price and review counts, missing values were replaced using mean imputation. This method involves filling missing entries with the average value of the respective column, which helps maintain the overall distribution of the data without introducing extreme variations.
+
+For categorical variables, such as product category or other descriptive attributes, missing values were replaced with the label “Unknown”. This ensures that no data is lost while still clearly indicating that the original value was not available. By handling missing values in this structured manner, the dataset becomes more complete and suitable for further analysis.
+
+\subsection{Duplicate Records}
+During the preprocessing stage, duplicate records were identified within the dataset. Duplicate entries can distort analysis results by over-representing certain products or data points, leading to biased conclusions.
+A total of 49 duplicate rows were found and removed from the dataset to ensure data integrity and accuracy. This step helps in maintaining uniqueness in the data and prevents redundancy, allowing for a more reliable analysis.
+
+After completing the data cleaning and preprocessing steps, the dataset was transformed into a clean and structured format. This prepared dataset is now free from inconsistencies and ready for effective exploratory data analysis, enabling accurate identification of patterns, trends, and insights.
+
+% ================= EDA =================
+\newpage
+\section{Exploratory Data Analysis}
+
+% FUNCTION FOR 2 GRAPHS
+\newcommand{\twographs}[5]{
+\subsection{#1}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.45\textwidth}
+\includegraphics[width=\linewidth]{#2}
+\caption{#2}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.45\textwidth}
+\includegraphics[width=\linewidth]{#3}
+\caption{#3}
+\end{subfigure}
+\caption{#1}
+\end{figure}
+
+\textbf{Interpretation 1:} #4
+
+\textbf{Interpretation 2:} #5
+
+\newpage
+}
+\twographs{Graph Analysis 1}{1 Rating Distribution.png}{2 Price vs Discount.png}{This histogram illustrates the distribution of product ratings across the dataset and provides valuable insight into customer satisfaction levels. It is clearly observed that the majority of products are concentrated within the rating range of 3 to 5, indicating that most items receive favorable feedback from users. The peak near the higher end of the rating scale suggests that customers are generally satisfied with the quality, performance, and value of the products available on the platform.
+
+Additionally, the number of products with very low ratings (below 2) is significantly small, which implies that poorly performing products are either rare or possibly removed or avoided by customers over time. This reflects a level of quality control and trust within the platform. The skewness towards higher ratings also indicates that users are more likely to purchase and review products that meet their expectations.
+
+Overall, the distribution highlights a strong positive sentiment among customers and suggests that the platform successfully maintains a high standard of product offerings, leading to better customer experience and satisfaction.}{The scatter plot demonstrates the relationship between the original price and the discounted price of products, offering insights into pricing strategies followed by sellers. A clear and strong positive correlation is observed between the two variables, meaning that as the original price increases, the discounted price also increases in a proportional manner. This indicates that discounts are applied in a structured and consistent way rather than randomly.
+
+Most of the data points lie close to a diagonal trend line, suggesting that sellers follow a uniform discounting strategy across different price ranges. This consistency helps maintain price balance and ensures that customers perceive fairness in pricing.
+}
+\twographs{Graph Analysis 2}{3 Reviews vs Rating.png}{4 Best Seller Analysis.png}{This scatter plot shows the relationship between total reviews and product ratings. It is observed that products with higher ratings often tend to accumulate more reviews, indicating increased customer engagement. However, the spread of points also suggests that even products with moderate ratings can have a large number of reviews. This indicates that popularity is not solely dependent on rating but also on factors such as visibility, pricing, and demand. The graph highlights that while rating influences trust, review count reflects engagement and reach. Together, they provide a more complete picture of product performance.}{This boxplot compares the distribution of ratings between best seller products and non-best seller products. It is evident that best seller products generally have a higher median rating compared to others, indicating that they consistently deliver better quality and customer satisfaction. The range of ratings for best sellers is also relatively narrower, suggesting that these products maintain a stable performance level.
+
+In contrast, non-best seller products show a wider spread in ratings, including lower values, which indicates inconsistency in quality and customer experience. The presence of outliers further highlights variability among non-best sellers.
+
+This graph emphasizes that achieving best seller status is strongly linked to maintaining high ratings and consistent performance. It also reflects the importance of positive customer feedback in increasing product visibility and driving sales on e-commerce platforms.}
+
+\twographs{Graph Analysis 3}{5 Category Distribution.png}{6. HEATMAP.png}{This bar chart represents the distribution of products across various categories, providing insights into market trends and product availability. It is observed that a few categories dominate the dataset with a significantly higher number of products, while others have relatively fewer listings. This indicates that certain product categories are more popular or in higher demand among customers.This bar chart displays the distribution of products across different categories. It shows that a few categories dominate the dataset, having significantly higher product counts than others. This indicates that certain product types are more popular or widely available on the platform. The uneven distribution suggests market concentration in specific segments. Categories with fewer products may represent niche markets. This insight helps in understanding demand patterns and identifying areas where competition is high or low.}{On the other hand, features like ratings and total reviews may show weaker or moderate correlations with pricing variables, suggesting that customer satisfaction is not solely dependent on product cost. The heatmap provides a comprehensive overview of how different attributes interact with each other and helps in identifying key influencing factors in the dataset.
+
+Overall, this visualization is useful for understanding underlying patterns and dependencies, which can further assist in predictive analysis and decision-making processes.The heatmap represents correlations between numerical variables such as price, rating, reviews, and discount. Strong positive or negative relationships are highlighted using color gradients. It helps identify which features influence each other. For example, price-related variables may show high correlation, while ratings may have weaker relationships with pricing. This visualization provides a quick overview of dependencies in the dataset and helps in identifying key factors affecting product performance.}
+
+\twographs{Graph Analysis 4}{7.Coupon Impact.png}{8.Discount Percentage Histogram.png}{This boxplot compares the distribution of discounted prices for products with and without coupons. It is observed that products offering coupons tend to have slightly lower effective prices, making them more appealing to customers. The median price for coupon-applied products is generally lower, indicating that sellers use coupons as a strategy to enhance affordability.
+
+Additionally, the spread of prices shows that coupon-based products still vary across different price ranges, suggesting that coupons are applied across both low and high-priced items. This reflects a flexible promotional strategy where discounts are tailored to attract a wide range of customers.
+
+Overall, the graph highlights the importance of coupons as a marketing tool that can influence purchasing behavior and improve product competitiveness in the market.}{This histogram shows how discount percentages are distributed across the dataset. It is evident that most products fall within a moderate discount range, indicating that sellers prefer to offer balanced discounts rather than extremely high reductions.
+
+The presence of fewer products with very high discount percentages suggests that heavy discounting is not a common practice and may be reserved for specific promotional events or clearance sales. On the other hand, very low discounts indicate premium or high-demand products that do not require aggressive pricing strategies.
+
+This distribution reflects a controlled and strategic approach to discounting, where sellers aim to attract customers while maintaining profitability.}
+
+\twographs{Graph Analysis 5}{9. Total Reviews Histogram.png}{10. Original Price Histogram.png}{This histogram represents the distribution of total reviews across products. It clearly shows that a large number of products have relatively low review counts, while only a small number of products receive a very high number of reviews.
+
+This pattern indicates that customer engagement is concentrated around a limited set of popular products, which dominate user attention and interactions. Such products may benefit from higher visibility, better marketing, or stronger brand presence.
+
+The long tail of products with fewer reviews suggests that many items struggle to gain attention, highlighting the competitive nature of the e-commerce platform. This insight emphasizes the importance of visibility and customer engagement in driving product success.}{This histogram shows the distribution of original product prices. It can be observed that most products are concentrated within a mid-range price segment, indicating that the platform primarily caters to average consumers.
+
+There are fewer products at extremely high or very low price points, suggesting that luxury and budget categories are less represented compared to mid-range items. The distribution reflects a balanced pricing strategy that targets a broad customer base.
+
+This analysis helps in understanding the pricing structure of the platform and provides insights into customer affordability and market positioning.}
+
+\twographs{Graph Analysis 6}{11. Discount vs Rating.png}{12. Discount vs Reviews.png}{This scatter plot examines the relationship between discount percentage and product ratings. The distribution of points suggests that there is no strong direct correlation between discounts and ratings. Products with both high and low discounts can have varying rating values.
+
+This indicates that customer satisfaction is influenced more by product quality, usability, and performance rather than just pricing or discounts. While discounts may attract initial purchases, they do not necessarily guarantee positive feedback.
+
+The graph highlights that maintaining product quality is more important than offering heavy discounts when it comes to achieving higher ratings.}{This graph explores how discount percentages relate to the number of reviews. It is observed that products with moderate to high discounts may attract more customer attention, resulting in increased reviews.
+
+However, the spread of data also indicates variability, suggesting that discounts alone are not sufficient to drive engagement. Other factors such as product popularity, category, and marketing strategies also play a role.
+
+Overall, the graph shows that while discounts can boost visibility and engagement, they are only one part of a broader strategy needed to increase customer interaction.}
+
+\twographs{Graph Analysis 7}{13. Rating Boxplot.png}{14. Reviews Boxplot.png}{These boxplots provide insights into the distribution and variability of ratings and reviews. The rating boxplot shows that most values are concentrated within a narrow range, indicating consistency in customer satisfaction levels. However, the presence of outliers suggests that a few products receive extremely low or high ratings.
+
+The reviews boxplot, on the other hand, shows a wider spread, indicating significant variation in customer engagement across products. Some products receive exceptionally high numbers of reviews, while many have relatively few.
+
+These visualizations help in identifying variability and outliers, which are important for understanding extremes in product performance.}{These boxplots provide insights into the distribution and variability of ratings and reviews. The rating boxplot shows that most values are concentrated within a narrow range, indicating consistency in customer satisfaction levels. However, the presence of outliers suggests that a few products receive extremely low or high ratings.
+
+The reviews boxplot, on the other hand, shows a wider spread, indicating significant variation in customer engagement across products. Some products receive exceptionally high numbers of reviews, while many have relatively few.
+
+These visualizations help in identifying variability and outliers, which are important for understanding extremes in product performance.}
+
+\twographs{Graph Analysis 8}{15. Price Boxplot.png}{16. Best Seller Count.png}{This boxplot represents the distribution of discounted prices of products in the dataset and provides a clear summary of how prices are spread across different ranges. The central line inside the box indicates the median (middle value) of the discounted price, which helps in understanding the typical price at which most products are sold. The box itself represents the interquartile range (IQR), covering the middle 50% of the data, which shows where the majority of product prices are concentrated.
+
+From the visualization, it can be observed that most products fall within a specific price range, indicating that the platform primarily focuses on a particular pricing segment, likely targeting average consumers. The spread of the box suggests how much variation exists in product pricing. A wider box indicates higher variability, while a narrower box shows more consistency in prices.
+
+Additionally, the presence of whiskers extending beyond the box highlights the range of prices excluding outliers. 
+
+The existence of such outliers indicates that while most products follow a standard pricing pattern, there are exceptions that cater to different market segments. This variation reflects the diversity of products available on the platform.}{This bar chart represents the count of products classified as best sellers versus non-best sellers in the dataset. It provides a clear comparison of how many products have achieved the “best seller” status compared to those that have not. From the graph, it is typically observed that the number of non-best seller products is significantly higher than the number of best sellers. This indicates that only a small proportion of products reach the level of popularity and performance required to be labeled as best sellers.
+
+The imbalance in the distribution highlights the competitive nature of the e-commerce platform, where only a limited number of products manage to stand out among a large pool of available items.}
+
+\twographs{Graph Analysis 9}{17. Sponsored Products Count.png}{18. Coupon Count.png}{This bar chart illustrates the distribution of products based on whether they are sponsored or non-sponsored. It provides insight into how frequently sellers use sponsorship as a marketing strategy on the platform. From the visualization, it is generally observed that the number of non-sponsored products is significantly higher than sponsored ones, indicating that only a limited portion of products rely on paid promotion.
+
+}{This bar chart represents the distribution of products based on the availability of coupons, showing how many products offer coupons versus those that do not. It provides useful insight into the use of promotional strategies by sellers on the platform. From the graph, it is generally observed that products without coupons are more numerous compared to those that provide coupon offers, indicating that coupon-based promotions are used selectively rather than universally.
+
+The smaller proportion of products with coupons suggests that sellers apply this strategy mainly for specific purposes, such as boosting sales, clearing inventory, attracting new customers, or increasing visibility in a competitive market. Coupons act as an additional incentive for customers by providing extra savings beyond regular discounts, which can significantly influence purchasing decisions.
+
+On the other hand, the larger number of products without coupons indicates that many sellers rely on other factors such as product quality, brand reputation, pricing, and customer reviews to attract buyers. This reflects that while coupons are effective, they are not the only method to drive sales and customer engagement.}
+
+\twographs{Graph Analysis 10}{19. Rating vs Coupon.png}{20. Rating vs Sponsored.png}{This boxplot illustrates the relationship between coupon availability and product ratings, comparing how ratings are distributed for products with coupons versus those without. It provides insight into whether offering coupons has any significant impact on customer satisfaction as reflected in product ratings.
+
+From the visualization, it can be observed that the median ratings for both categories—products with coupons and those without—are often quite similar, indicating that the presence of a coupon does not drastically influence how customers rate a product. This suggests that ratings are primarily driven by factors such as product quality, usability, and overall customer experience rather than promotional incentives like coupons.
+
+However, there may be slight variations in the spread of ratings between the two groups. Products with coupons might show a slightly wider distribution, indicating that while some discounted products receive very high ratings, others may not perform as well. This variability could be due to the fact that coupons are sometimes applied to promote less popular or slower-selling products, which may not always meet customer expectations.}{This boxplot compares product ratings between sponsored and non-sponsored products, helping to understand whether paid promotion has any effect on customer satisfaction. The visualization shows the median, spread, and variation of ratings in both categories, giving a clear picture of how ratings are distributed.
+
+From the graph, it is evident that the median ratings for both sponsored and non-sponsored products are quite close to each other, indicating that sponsorship does not significantly influence how customers rate a product. This suggests that customers base their ratings mainly on their actual experience with the product, such as quality, performance, durability, and value for money, rather than whether the product is advertised.
+
+The spread of the boxplot (interquartile range) may show slight differences between the two categories. }
+
+\twographs{Graph Analysis 11}{21. Price vs Reviews.png}{22. Rating vs Price.png}{This scatter plot illustrates the relationship between the discounted price of products and the total number of customer reviews they have received. It helps in understanding whether product pricing has any influence on customer engagement and popularity, as reflected by review counts.
+
+From the graph, it can be observed that there is no strong linear relationship between price and the number of reviews. The data points are widely scattered across different price ranges, indicating that both low-priced and high-priced products can have either high or low numbers of reviews. This suggests that price alone is not a determining factor for customer engagement.
+
+However, a general pattern can still be noticed where many products with a large number of reviews tend to fall within the low to mid-price range. This may indicate that affordable products are purchased more frequently, leading to higher customer interaction and review activity. In contrast, high-priced products often show fewer reviews, which could be due to lower purchase frequency as customers may be more selective when buying expensive items.
+
+The presence of scattered high-review points across different price levels also indicates that some products become popular regardless of their price. These products may benefit from strong brand reputation, high quality, effective marketing, or high demand in their category.}{This scatter plot represents the relationship between the discounted price of products and their corresponding customer ratings. It is used to analyze whether the price of a product has any direct influence on how customers perceive and rate it.
+
+From the visualization, it can be observed that the data points are widely scattered across different price ranges, indicating that there is no strong or clear correlation between price and ratings. Products with both high and low prices are seen to have ratings spread across the entire rating scale, from low to high. This suggests that price alone does not determine customer satisfaction.
+}
+
+\twographs{Graph Analysis 12}{23. Discount vs Price.png}{24. Category Pie Chart.png}{This scatter plot represents the relationship between discount percentage and discounted price, helping to analyze how discounts are applied across products with different price ranges. It provides insights into whether higher discounts are associated with higher-priced products or if discounts are distributed uniformly.
+
+From the graph, it can be observed that the data points are spread across different discount levels and price ranges, indicating that there is no perfectly linear relationship between discount percentage and discounted price. However, a general pattern may still be identified where products with higher prices tend to show a wider range of discount percentages. This suggests that sellers may apply flexible discount strategies depending on the product’s pricing and market positioning.
+
+In many cases, moderately priced products appear to cluster around common discount ranges, indicating standardized discount practices for popular price segments. On the other hand, high-priced products may sometimes receive higher discount percentages in order to attract customers, as large discounts create a perception of better value and savings. This is a common strategy used in e-commerce to encourage purchases of premium items.}{This pie chart represents the distribution of the top 10 product categories in the dataset, showing their relative proportion in terms of product count. Each slice of the pie corresponds to a specific category, and its size indicates the percentage share of that category compared to others. This visualization provides a clear and intuitive understanding of how products are distributed across different categories on the platform.
+
+From the chart, it can be observed that a few categories occupy larger portions of the pie, indicating that they dominate the dataset. These categories likely represent high-demand product segments where both sellers and customers are highly active. The dominance of certain categories suggests strong market demand and intense competition within those segments.
+
+On the other hand, smaller slices represent categories with fewer products, indicating niche or less popular segments.}
+
+\twographs{Graph Analysis 13}{25. Reviews vs Discount (Line).png}{26. Rating KDE Plot.png}{This line plot represents the relationship between discount percentage and the total number of customer reviews, helping to understand how discounts influence customer engagement over different levels. The graph connects data points to show trends, making it easier to observe how review counts change as discount percentages increase.
+
+From the visualization, it can be observed that the number of reviews does not follow a perfectly smooth or consistent trend with increasing discount percentage. Instead, the line may show fluctuations, indicating that while discounts can impact customer engagement, the relationship is not strictly linear. In some ranges, an increase in discount percentage may correspond to a rise in the number of reviews, suggesting that higher discounts attract more customers and encourage more interactions.
+
+However, there may also be segments where increasing discounts do not significantly increase reviews or may even show irregular patterns. This suggests that discounts alone are not sufficient to drive customer engagement consistently. Other factors such as product quality, category demand, brand value, and visibility also play crucial roles in determining how many reviews a product receives.}{This KDE (Kernel Density Estimation) plot represents the probability density distribution of product ratings in the dataset. Unlike a histogram, which shows frequency using bars, the KDE plot provides a smooth curve that helps in understanding the overall pattern and concentration of rating values more clearly.
+
+From the graph, it can be observed that the density curve is highly concentrated towards the higher end of the rating scale, typically between 3 and 5. This indicates that most products receive relatively high ratings, reflecting a generally positive customer experience across the platform. The peak of the curve represents the most common rating range, suggesting that a large number of products are consistently rated well by users.
+
+The smooth nature of the curve also helps in identifying the skewness of the data.}
+
+\twographs{Graph Analysis 14}{27. Price KDE Plot.png}{28. Reviews KDE Plot.png}{This KDE (Kernel Density Estimation) plot represents the distribution of discounted product prices in the dataset. It provides a smooth curve that helps in understanding where most price values are concentrated, offering a clearer view of pricing patterns compared to a traditional histogram.
+
+From the graph, it can be observed that the density curve is highly concentrated around a specific price range, indicating that a large number of products fall within this segment. This suggests that the platform primarily targets a particular pricing category, most likely the mid-range segment, which is generally preferred by the majority of customers due to affordability and value for money.
+
+The peak of the curve represents the most common price range where product density is highest. This indicates that sellers tend to price their products within this range to remain competitive and attract a larger customer base. The concentration of prices in this segment reflects a strategic pricing approach aimed at maximizing sales volume.}{This KDE (Kernel Density Estimation) plot represents the distribution of the total number of reviews across all products in the dataset. It provides a smooth curve that helps in understanding how customer engagement is distributed, highlighting where most products lie in terms of review count.
+
+From the graph, it can be observed that the density is highly concentrated near the lower end of the review scale. This indicates that a large number of products have relatively few reviews. Such a pattern is common in e-commerce platforms, where only a small percentage of products receive significant attention, while the majority remain less reviewed and less visible to customers.
+
+As the curve moves toward higher review counts, it gradually declines, showing that only a limited number of products accumulate a very large number of reviews. These products are likely to be popular, well-established, or highly demanded items that attract consistent customer interaction over time. They may benefit from better visibility, strong brand reputation, or higher customer trust.}
+
+\twographs{Graph Analysis 15}{29. Category vs Rating.png}{30. Category vs Price.png}{This boxplot illustrates the distribution of product ratings across different product categories, helping to compare customer satisfaction levels among various segments. Each category on the x-axis represents a group of products, while the y-axis shows the corresponding ratings. The boxplot provides key statistical insights such as median, spread (interquartile range), and outliers for each category.
+
+From the graph, it can be observed that most categories have ratings concentrated within a similar range, typically between 3 and 5. This indicates that overall customer satisfaction is fairly consistent across different product categories. The median line within each box shows the average satisfaction level for that category, and categories with higher median values can be considered better-performing in terms of customer feedback.
+
+The variation in the size of the boxes (IQR) across categories indicates differences in rating consistency. Categories with smaller boxes have more consistent ratings, suggesting stable product quality and predictable customer experiences. In contrast, categories with larger boxes show greater variability, meaning that customer satisfaction varies widely within those categories. This could be due to differences in product quality, brand diversity, or varying customer expectations.}{This boxplot illustrates the distribution of discounted prices across different product categories, allowing for a comparative analysis of pricing patterns within each category. Each category on the x-axis represents a group of products, while the y-axis shows the range of their discounted prices. The boxplot provides key statistical insights such as the median price, interquartile range (IQR), and the presence of outliers for each category.
+
+From the graph, it can be observed that different categories exhibit distinct pricing patterns. Some categories have higher median prices, indicating that products within those segments are generally more expensive, possibly due to higher quality, brand value, or product complexity. In contrast, other categories show lower median prices, suggesting affordability and targeting of budget-conscious customers.
+}
+
+\end{document}
